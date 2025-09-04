@@ -1,22 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>罗小黑</title>
-    <link rel="stylesheet" href="..\static\css\1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程办公系统</title>
+
+    <!-- 指定css文件 -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        // JavaScript 代码：调用后端的 /refresh 接口
+        function refreshData() {
+            console.log("开始更新数据源...");
+            fetch('/refresh', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log("响应状态码:", response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log("后端返回的数据:", data);
+                alert(data.message); // 弹出后端返回的消息
+            })
+            .catch(error => {
+                console.error('请求失败:', error);
+                alert('更新失败，请稍后再试！');
+            });
+        }
+        //跳转页面
+        function goToPage_creat() {
+            // 指定要跳转到的页面 URL
+            window.location.href = "/creat";
+        }
+        function goToPage_email() {
+            // 指定要跳转到的页面 URL
+            window.location.href = "/email";
+        }
+    </script>
 </head>
- 
 <body>
-    <!-- <div id="live2d-main">
-        <canvas id="live2d" height=600 class="live2d"></canvas>
-    </div> -->
-    <h1>你好</h1>
-    <!-- Pollyfill script -->
-    <!-- <script src="https://unpkg.com/core-js-bundle@3.6.1/minified.js"></script> -->
-    <!-- Live2DCubismCore script -->
-    <script src = "../static/src/live2dcubismcore.js"></script>
-    <!-- Build script -->
-    <script src = "../static/src/index-GcD1w8Yw.js"></script>
+    <div class="container">
+        <h1>工程办公系统</h1>
+        <br>
+        <form class="search" action="/search" method="post">
+            <input type="text" name="keyword" placeholder="输入关键字，查询项目相关信息" required>
+            <br>
+            <br>
+            <button type="submit" >查询</button>
+        </form>
+        <br>
+        <br>
+        <br>
+        <button onclick="goToPage_creat()">材料生成</button>
+    </div>
 </body>
 </html>
