@@ -1,61 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工程办公系统</title>
-
-    <!-- 指定css文件 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>房间</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <script>
-        // JavaScript 代码：调用后端的 /refresh 接口
-        function refreshData() {
-            console.log("开始更新数据源...");
-            fetch('/refresh', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                console.log("响应状态码:", response.status);
-                return response.json();
-            })
-            .then(data => {
-                console.log("后端返回的数据:", data);
-                alert(data.message); // 弹出后端返回的消息
-            })
-            .catch(error => {
-                console.error('请求失败:', error);
-                alert('更新失败，请稍后再试！');
-            });
-        }
-        //跳转页面
-        function goToPage_creat() {
-            // 指定要跳转到的页面 URL
-            window.location.href = "/creat";
-        }
-        function goToPage_email() {
-            // 指定要跳转到的页面 URL
-            window.location.href = "/email";
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>工程办公系统</h1>
-        <br>
-        <form class="search" action="/search" method="post">
-            <input type="text" name="keyword" placeholder="输入关键字，查询项目相关信息" required>
-            <br>
-            <br>
-            <button type="submit" >查询</button>
-        </form>
-        <br>
-        <br>
-        <br>
-        <button onclick="goToPage_creat()">材料生成</button>
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <div class="loading-text">今天也很爱你...</div>
     </div>
+    <div class="background"></div>
+    <div class="hearts"></div>
+    <div class="stars"></div>
+    <div class="sparkles"></div>
+    <canvas class="fireworks" id="fireworksCanvas"></canvas>
+    <div class="message-container">
+        <div class="message" id="loveMessage"></div>
+    </div>
+    <script src="scripts.js"></script>
+    <audio autoplay loop>
+    <source src="https://www.aigei.com/music/class/biao_bai/" type="audio/mpeg">
+</audio>
 </body>
 </html>
